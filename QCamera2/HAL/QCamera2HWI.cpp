@@ -431,7 +431,6 @@ int QCamera2HardwareInterface::start_recording(struct camera_device *device)
     }
     // Preview window changes for 720p and higher
     hw->mParameters.getVideoSize(&width, &height);
-    ALOGE("YumeMichi: %s: Vdo = %dx%d", __func__, width, height);
     if ((width * height) >= (1280 * 720)) {
         char *orig_params = hw->getParameters();
         if (orig_params) {
@@ -447,10 +446,6 @@ int QCamera2HardwareInterface::start_recording(struct camera_device *device)
 
             const char *hfrStr = params.get("video-hfr");
             const char *hsrStr = params.get("video-hsr");
-            const char *picStr = params.get("picture-size");
-            const char *prvStr = params.get("preview-size");
-
-            ALOGE("YumeMichi: %s: HFR = %s, HSR = %s, Pic = %s, Prv = %s", __func__, hfrStr, hsrStr, picStr, prvStr);
 
             // Use yuv420sp for high framerates
             if ((hfrStr != NULL && strcmp(hfrStr, "off")) ||
